@@ -9,6 +9,7 @@ router.get('/:id?', async (req, res, next) => {
         if (id) {
             return await Users.findOne({ where: { id: id } })
                 .then((Contenido) => res.status(200).send(Contenido))
+                .catch(() => res.status(404).json({ message: 'no se encuentra usuario' }))
         }
         await Users.findAll()
             .then((Contenido) => res.status(200).send(Contenido))
